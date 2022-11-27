@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f37246d1-9988-44fa-9717-fb81c0496853" name="Changes" comment="correcrt README.md">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hexlet/code/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Differ.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Differ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Differ.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Json.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/JsonSerialize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Plain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/hexlet/code/Stylish.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/hexlet/code/DifferTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/hexlet/code/JsonTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/hexlet/code/ParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/hexlet/code/PlainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/file1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/file1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/file2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/file3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/file4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/filepath1.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/resources/fixtures/filepath2.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
