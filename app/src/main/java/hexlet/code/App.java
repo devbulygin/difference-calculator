@@ -32,6 +32,10 @@ public class App implements Runnable {
         return filePath2;
     }
 
+    public static String getFormatName() {
+        return formatName;
+    }
+
     public static void main(String[] args) {
         CommandLine.run(new App(), args);
     }
@@ -41,7 +45,7 @@ public class App implements Runnable {
     public void run() {
         String formattedDiff = null;
         try {
-            formattedDiff = Differ.generate(getFilepath1(), getFilepath2(), formatName);
+            formattedDiff = Differ.generate(getFilepath1(), getFilepath2());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
