@@ -10,7 +10,7 @@ import java.util.TreeSet;
 
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2, ) throws Exception {
+    public static String generate(String filePath1, String filePath2) throws Exception {
 //        читаем входные файлы и расширение (json, yml)
 //        на основе формата данных(получили из расширения фалйла) парсим данные в мапу, получается 2 мапы
         String formatName = App.getFormatName();
