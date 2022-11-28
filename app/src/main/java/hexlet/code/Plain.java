@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,7 +14,8 @@ public class Plain {
 
         keys.addAll(proceedMap.keySet());
 
-        for (String key :keys) {
+        for (String key: keys) {
+
 
             switch (proceedMap.get(key)) {
                 case "added":
@@ -31,8 +34,10 @@ public class Plain {
                 default:
                     throw new RuntimeException("operation not found");
             }
+
         }
-        return result;
+
+        return StringUtils.chop(result);
 
     }
 }

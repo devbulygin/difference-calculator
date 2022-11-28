@@ -17,8 +17,8 @@ public class Differ {
 //        читаем входные файлы и расширение (json, yml)
 //        на основе формата данных(получили из расширения фалйла) парсим данные в мапу, получается 2 мапы
 
-        Map<String, Object> map1 = checkFileNull(Parser.parse(filePath1));
-        Map<String, Object> map2 = checkFileNull(Parser.parse(filePath2));
+        Map<String, Object> map1 = (Parser.parse(filePath1));
+        Map<String, Object> map2 = (Parser.parse(filePath2));
 
 
         switch (formatName) {

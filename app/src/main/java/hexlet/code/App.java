@@ -45,7 +45,7 @@ public class App implements Runnable {
     public void run() {
         String formattedDiff = null;
         try {
-            formattedDiff = Differ.generate(getFilepath1(), getFilepath2());
+            formattedDiff = Differ.generate(getFilepath1(), getFilepath2(), formatName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

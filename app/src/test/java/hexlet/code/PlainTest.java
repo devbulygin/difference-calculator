@@ -33,7 +33,7 @@ class PlainTest {
 
         String expected = "Property 'String1' was updated. From value1 to value2\n"
                 + "Property 'array1' was removed\n"
-                + "Property 'obj1' was added with value: [complex value]\n";
+                + "Property 'obj1' was added with value: [complex value]";
 
         String actual = Plain.format(proceedMap, map1, map2);
 
