@@ -3,6 +3,7 @@ package hexlet.code;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -14,8 +15,15 @@ public class Plain {
 
         keys.addAll(proceedMap.keySet());
 
-        for (String key: keys) {
+//        for (String key1: keys) {
+//            if (Objects.equals(map1.get(key1), "null")) {
+//                map1.put(key1, null);}
+//            if (Objects.equals(map2.get(key1), "null")) {
+//                map2.put(key1, null);
+//                }
+//            }
 
+        for (String key: keys) {
 
             switch (proceedMap.get(key)) {
                 case "added":

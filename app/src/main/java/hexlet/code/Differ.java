@@ -1,12 +1,7 @@
 package hexlet.code;
 
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class Differ {
@@ -106,7 +101,7 @@ public class Differ {
                 proceedMap.put(key, "added");
             } else if (!file2.containsKey(key)) {
                 proceedMap.put(key, "deleted");
-            } else if (!file1.get(key).equals(file2.get(key))) {
+            } else if (!Objects.equals(file1.get(key), file2.get(key))) {
                 proceedMap.put(key, "changed");
             } else {
                 proceedMap.put(key, "unchanged");
