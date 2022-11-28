@@ -10,25 +10,18 @@ import java.util.TreeSet;
 
 
 public class Differ {
-    private static String formatName = "stylish";
 
-    public static String getFormatName() {
-        return formatName;
-    }
 
-    public static void setFormatName(String formatName) {
-        Differ.formatName = formatName;
-    }
 
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
 //        читаем входные файлы и расширение (json, yml)
 //        на основе формата данных(получили из расширения фалйла) парсим данные в мапу, получается 2 мапы
-        String format = getFormatName();
+
         Map<String, Object> map1 = checkFileNull(Parser.parse(filePath1));
         Map<String, Object> map2 = checkFileNull(Parser.parse(filePath2));
 
 
-        switch (format) {
+        switch (formatName) {
             case "stylish":
                 Map<String, String> proceedMap = differMap(checkFileArrayToString(map1), checkFileArrayToString(map2));
                 return Stylish.format(proceedMap, map1, map2);
@@ -45,6 +38,10 @@ public class Differ {
                 throw new Exception("no format selected");
         }
 
+    }
+
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
     }
 
 

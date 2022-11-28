@@ -43,8 +43,6 @@ public class App implements Runnable {
 
     @Override
     public void run() {
-        Differ.setFormatName(formatName);
-
         String formattedDiff = null;
         try {
             formattedDiff = Differ.generate(getFilepath1(), getFilepath2());
