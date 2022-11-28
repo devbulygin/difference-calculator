@@ -31,7 +31,7 @@ class DifferTest {
         String expected2 = "Property 'follow' was removed\n"
                 + "Property 'proxy' was removed\n"
                 + "Property 'timeout' was updated. From 50 to 20\n"
-                + "Property 'verbose' was added with value: true\n";
+                + "Property 'verbose' was added with value: true";
 
 
 

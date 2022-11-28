@@ -1,27 +1,23 @@
 package hexlet.code;
 
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
 import java.util.TreeSet;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
+
+
 
 public class Plain {
     public static String format(Map<String, String> proceedMap, Map<String, Object> map1, Map<String, Object> map2) {
         String result = new String();
         Set<String> keys = new TreeSet<>();
-
-
         keys.addAll(proceedMap.keySet());
 
-//        for (String key1: keys) {
-//            if (Objects.equals(map1.get(key1), "null")) {
-//                map1.put(key1, null);}
-//            if (Objects.equals(map2.get(key1), "null")) {
-//                map2.put(key1, null);
-//                }
-//            }
+        map1 = checkFileArrayToComplexValue(map1);
+        map2 = checkFileArrayToComplexValue(map2);
 
         for (String key: keys) {
 
@@ -47,5 +43,22 @@ public class Plain {
 
         return StringUtils.chop(result);
 
+    }
+
+    public static Map checkFileArrayToComplexValue(Map<String, Object> file) {
+        Map<String, Object> checkFile = file;
+        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
+            var value = file.get(object.getKey());
+//            if (value instanceof String
+//                    || value instanceof Character) {
+//                checkFile.put(object.getKey(), ("\'" + value + "\'"));
+//            }
+            if (value instanceof LinkedHashMap
+                    || value instanceof ArrayList) {
+                checkFile.put(object.getKey(), "[complex value]");
+            }
+        }
+
+        return checkFile;
     }
 }

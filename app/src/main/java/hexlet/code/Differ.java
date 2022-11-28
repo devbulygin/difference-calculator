@@ -1,8 +1,13 @@
 package hexlet.code;
 
 
-import java.util.*;
-
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Differ {
 
@@ -21,12 +26,10 @@ public class Differ {
                 Map<String, String> proceedMap = differMap(checkFileArrayToString(map1), checkFileArrayToString(map2));
                 return Stylish.format(proceedMap, map1, map2);
             case "plain":
-                Map<String, String> proceedMapPlain = differMap(checkFileArrayToComplexValue(map1),
-                        checkFileArrayToComplexValue(map2));
+                Map<String, String> proceedMapPlain = differMap(map1, map2);
                 return Plain.format(proceedMapPlain, map1, map2);
             case "json":
-                Map<String, String> proceedMapJson = differMap(checkFileArrayToComplexValue(map1),
-                        checkFileArrayToComplexValue(map2));
+                Map<String, String> proceedMapJson = differMap(map1, map2);
                 return Json.format(proceedMapJson, map1, map2);
 
             default:
@@ -38,22 +41,6 @@ public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
         return generate(filePath1, filePath2, "stylish");
     }
-
-
-
-
-    public static Map checkFileNull(Map<String, Object> file) {
-        Map<String, Object> checkFile = file;
-        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
-            var value = checkFile.get(object.getKey());
-
-            if (value == null) {
-                checkFile.put(object.getKey(), "null");
-            }
-        }
-        return file;
-    }
-
 
 
     public static Map checkFileArrayToString(Map<String, Object> file) {
@@ -68,22 +55,7 @@ public class Differ {
         return file;
     }
 
-    public static Map checkFileArrayToComplexValue(Map<String, Object> file) {
-        Map<String, Object> checkFile = file;
-        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
-            var value = file.get(object.getKey());
-            if (value instanceof String
-                    || value instanceof Character) {
-                checkFile.put(object.getKey(), ("\'" + value + "\'"));
-            }
-            if (value instanceof LinkedHashMap
-                    || value instanceof ArrayList) {
-                checkFile.put(object.getKey(), "[complex value]");
-            }
-        }
 
-        return checkFile;
-    }
 
 
     public static Map differMap(Map file1, Map file2) {
