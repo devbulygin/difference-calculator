@@ -66,17 +66,28 @@ public class Differ {
 
         Map<String, String> proceedMap = new TreeMap<>();
 
-
-
         for (String key : keys) {
-            if (!file1.containsKey(key)) {
-                proceedMap.put(key, "added");
-            } else if (!file2.containsKey(key)) {
-                proceedMap.put(key, "deleted");
-            } else if (!Objects.equals(file1.get(key), file2.get(key))) {
-                proceedMap.put(key, "changed");
+            if(file1.get(key) != null
+                    || file2.get(key) != null) {
+                if (!file1.containsKey(key)) {
+                    proceedMap.put(key, "added");
+                } else if (!file2.containsKey(key)) {
+                    proceedMap.put(key, "deleted");
+                } else if (!Objects.equals(file1.get(key), file2.get(key))) {
+                    proceedMap.put(key, "changed");
+                } else {
+                    proceedMap.put(key, "unchanged");
+                }
             } else {
-                proceedMap.put(key, "unchanged");
+                if (!file1.containsKey(key)) {
+                    proceedMap.put(key, "added");
+                } else if (!file2.containsKey(key)) {
+                    proceedMap.put(key, "deleted");
+                } else if (file1.get(key) != file2.get(key)) {
+                    proceedMap.put(key, "changed");
+                } else {
+                    proceedMap.put(key, "unchanged");
+                }
             }
         }
 
