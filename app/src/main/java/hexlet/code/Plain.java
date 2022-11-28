@@ -9,6 +9,7 @@ public class Plain {
         String result = new String();
         Set<String> keys = new TreeSet<>();
 
+
         keys.addAll(proceedMap.keySet());
 
         for (String key :keys) {

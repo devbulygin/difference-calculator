@@ -20,6 +20,7 @@ class PlainTest {
         proceedMap = Map.of("int1", "unchanged", "String1", "changed",
                 "array1", "deleted", "obj1", "added");
 
+
         map1 = Map.of("int1", 1, "String1", "value1",
                 "array1", "[complex value]");
         map2 = Map.of("int1", 1, "String1", "value2",
