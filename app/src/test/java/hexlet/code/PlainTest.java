@@ -30,13 +30,13 @@ class PlainTest {
     @Test
     void standartVariant() {
 
-        String expected = "Property 'String1' was updated. From 'value1' to 'value2'\n"
+        String expected = "Property 'String1' was updated. From value1 to value2\n"
                 + "Property 'array1' was removed\n"
-                + "Property 'obj1' was added with value: '[complex value]'\n";
+                + "Property 'obj1' was added with value: [complex value]\n";
 
         String actual = Plain.format(proceedMap, map1, map2);
 
-        assertThat(expected).containsAnyOf(actual);
+        assertThat(actual).isEqualTo(expected);
 
 
     }

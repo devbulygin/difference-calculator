@@ -16,14 +16,14 @@ public class Plain {
             switch (proceedMap.get(key)) {
                 case "added":
                     result += "Property " + "\'" +  key + "\'" + " was added with value: "
-                            + "\'" + map2.get(key) + "\'" + "\n";
+                            + map2.get(key) + "\n";
                     break;
                 case "deleted":
                     result += "Property " + "\'" +  key + "\'" +  " was removed" + "\n";
                     break;
                 case "changed":
                     result += "Property " + "\'" + key + "\'" + " was updated. From "
-                            + "\'" + map1.get(key) + "\'" + " to " + "\'" + map2.get(key) + "\'" + "\n";
+                            + map1.get(key) + " to " + map2.get(key) + "\n";
                     break;
                 case "unchanged":
                     break;
