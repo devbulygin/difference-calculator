@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.LinkedHashMap;
-import java.util.ArrayList;
+
 
 
 
@@ -47,17 +47,20 @@ public class Plain {
     public static Map checkFileArrayToComplexValue(Map<String, Object> file) {
         Map<String, Object> checkFile = file;
         for (Map.Entry<String, Object> object : checkFile.entrySet()) {
-            var value = file.get(object.getKey());
+            var value = checkFile.get(object.getKey());
+            if (value != null) {
+                if (value instanceof String
+                        || value instanceof Character) {
+                    String quoteValue = "\'" + value + "\'";
+                    checkFile.put(object.getKey(), quoteValue);
+                }
 
-            if (value instanceof String
-                    || value instanceof Character) {
-                String quoteValue = "\'" + value + "\'";
-                checkFile.put(object.getKey(), quoteValue);
-            }
-
-            if (value instanceof LinkedHashMap
-                    || value instanceof ArrayList) {
-                checkFile.put(object.getKey(), "[complex value]");
+                if (value instanceof LinkedHashMap
+                        || value instanceof LinkedHashMap) {
+                    checkFile.put(object.getKey(), "[complex value]");
+                }
+            } else {
+                checkFile.put(object.getKey(), null);
             }
         }
 
