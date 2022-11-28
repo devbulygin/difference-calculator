@@ -48,19 +48,15 @@ public class Plain {
         Map<String, Object> checkFile = file;
         for (Map.Entry<String, Object> object : checkFile.entrySet()) {
             var value = checkFile.get(object.getKey());
-            if (value != null) {
-                if (value instanceof String
-                        || value instanceof Character) {
-                    String quoteValue = "\'" + value + "\'";
-                    checkFile.put(object.getKey(), quoteValue);
-                }
 
-                if (value instanceof LinkedHashMap
-                        || value instanceof LinkedHashMap) {
-                    checkFile.put(object.getKey(), "[complex value]");
-                }
-            } else {
-                checkFile.put(object.getKey(), null);
+            if (value instanceof String
+                        || value instanceof Character) {
+                String quoteValue = "\'" + value + "\'";
+                checkFile.put(object.getKey(), quoteValue);
+            }
+            if (value instanceof LinkedHashMap
+                    || value instanceof LinkedHashMap) {
+                checkFile.put(object.getKey(), "[complex value]");
             }
         }
 

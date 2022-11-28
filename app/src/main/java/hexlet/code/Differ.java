@@ -67,7 +67,7 @@ public class Differ {
         Map<String, String> proceedMap = new TreeMap<>();
 
         for (String key : keys) {
-            if(file1.get(key) != null
+            if (file1.get(key) != null
                     || file2.get(key) != null) {
                 if (!file1.containsKey(key)) {
                     proceedMap.put(key, "added");
