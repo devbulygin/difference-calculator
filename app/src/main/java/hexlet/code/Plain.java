@@ -16,8 +16,8 @@ public class Plain {
         Set<String> keys = new TreeSet<>();
         keys.addAll(proceedMap.keySet());
 
-        map1 = checkFileArrayToComplexValue(map1);
-        map2 = checkFileArrayToComplexValue(map2);
+        map1 = modificationArrayAndString(map1);
+        map2 = modificationArrayAndString(map2);
 
         for (String key: keys) {
 
@@ -45,14 +45,14 @@ public class Plain {
 
     }
 
-    public static Map checkFileArrayToComplexValue(Map<String, Object> file) {
+    public static Map modificationArrayAndString(Map<String, Object> file) {
         Map<String, Object> checkFile = file;
         for (Map.Entry<String, Object> object : checkFile.entrySet()) {
             var value = file.get(object.getKey());
-//            if (value instanceof String
-//                    || value instanceof Character) {
-//                checkFile.put(object.getKey(), ("\'" + value + "\'"));
-//            }
+            if (value instanceof String
+                || value instanceof Character) {
+                checkFile.put(object.getKey(), ("\'" + value + "\'"));
+            }
             if (value instanceof LinkedHashMap
                     || value instanceof ArrayList) {
                 checkFile.put(object.getKey(), "[complex value]");
