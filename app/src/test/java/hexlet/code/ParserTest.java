@@ -29,31 +29,11 @@ class ParserTest {
             Parser.parse(relativeXmlPath);
         });
 
-        String expectedMessage = "File type'application/xml' not supportedPlease, select .json or .yml file";
+        String expectedMessage = "File type 'xml' not supported. Please, select .json or .yml file";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
 
     }
 
-//    @Test
-//    void yamlToMap() throws Exception {
-//        String yaml = "host: hexlet.io\n" +
-//                "timeout: 50\n" +
-//                "proxy: 123.234.53.22";
-//
-//        Map expected1 = Map.of("host", "hexlet.io", "timeout", 50, "proxy", "123.234.53.22");
-//
-//
-//
-//        var actual1 = Parser.jsonToMap(yaml);
-//
-//
-//        assertThat(actual1).isEqualTo(expected1);
-//
-//
-//
-//
-//
-//    }
 }

@@ -54,7 +54,7 @@ public class Parser {
         } else if (Objects.equals(fileType,"yml")) {
             return yamlToMap(readFile);
         } else {
-            throw new Exception("File type'" + fileType + "' not supported. " + "Please, select .json or .yml file");
+            throw new Exception("File type '" + fileType + "' not supported. " + "Please, select .json or .yml file");
         }
 
 //        String fileType = Files.probeContentType(path);

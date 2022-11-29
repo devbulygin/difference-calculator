@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import org.apache.commons.lang3.StringUtils;
+
 
 import java.util.Map;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class Plain {
 
         }
 
-        return StringUtils.chop(result);
+        return (result == null || result.length() == 0) ? null : (result.substring(0, result.length() - 1));
 
     }
 
