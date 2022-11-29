@@ -45,9 +45,9 @@ public class Parser {
 
 
         String fileType = Files.probeContentType(path);
-        if (fileType == null) {
-            fileType = "application/x-yaml";
-        }
+//        if (fileType == null) {
+//            fileType = "application/x-yaml";
+//        }
 
         if (Objects.equals(fileType, "application/json")) {
             return jsonToMap(readFile);
