@@ -41,6 +41,9 @@ public class Parser {
         }
         // Читаем файл
         String readFile = Files.readString(path);
+        if (readFile.isEmpty()) {
+            readFile ="{}";
+        }
 
 
 
