@@ -54,7 +54,7 @@ public class Differ {
                 proceedMap.put(key, "added");
             } else if (!file2.containsKey(key)) {
                 proceedMap.put(key, "deleted");
-            } else if (!file1.get(key).equals(file2.get(key))) {
+            } else if (!(Objects.equals(file1.get(key), file2.get(key)))) {
                 proceedMap.put(key, "changed");
             } else {
                 proceedMap.put(key, "unchanged");
