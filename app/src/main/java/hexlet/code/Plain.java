@@ -2,19 +2,15 @@ package hexlet.code;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 
 public class Plain {
     public static String format(Map<String, String> proceedMap, Map<String, Object> map1, Map<String, Object> map2) {
         String result = new String();
         Set<String> keys = new TreeSet<>(proceedMap.keySet());
-        map1 = checkFileArrayToComplexValue(map1);
-        map2 = checkFileArrayToComplexValue(map2);
+        map1 = modificationMap(map1);
+        map2 = modificationMap(map2);
 
         for (String key : keys) {
 
@@ -42,21 +38,19 @@ public class Plain {
 
     }
 
-    public static Map checkFileArrayToComplexValue(Map<String, Object> file) {
+    public static Map modificationMap(Map<String, Object> file) {
         Map<String, Object> checkFile = new HashMap<>();
         Map<String, Object> resultMap = new HashMap<>();
         checkFile.putAll(file);
         for (Map.Entry<String, Object> object : checkFile.entrySet()) {
             String key = object.getKey();
-            var value = checkFile.get(object.getKey());
+            var value = checkFile.get(key);
             if (value instanceof String
                     || value instanceof Character) {
                 resultMap.put(key, "\'" + value + "\'");
             } else if (value == null) {
                 resultMap.put(key, null);
-                continue;
-            } else if (value instanceof LinkedHashMap
-                    || value.getClass().isArray()) {
+            } else if (value instanceof ArrayList || value instanceof LinkedHashMap) {
                 resultMap.put(key, "[complex value]");
             } else {
                 resultMap.put(key, value);
