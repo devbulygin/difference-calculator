@@ -2,10 +2,12 @@ package hexlet.code;
 
 
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.TreeMap;
 import java.util.Objects;
+
+
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
@@ -52,7 +54,7 @@ public class Differ {
                 proceedMap.put(key, "added");
             } else if (!file2.containsKey(key)) {
                 proceedMap.put(key, "deleted");
-            } else if (!Objects.equals(file1.get(key), file2.get(key))) {
+            } else if (!file1.get(key).equals(file2.get(key))) {
                 proceedMap.put(key, "changed");
             } else {
                 proceedMap.put(key, "unchanged");
