@@ -2,7 +2,11 @@ package hexlet.code;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 public class Plain {
@@ -48,35 +52,20 @@ public class Plain {
             if (value instanceof String
                     || value instanceof Character) {
                 resultMap.put(key, "\'" + value + "\'");
-            } else if (value instanceof LinkedHashMap ||
-                    value.getClass().isArray()) {
+            } else if (value == null) {
+                resultMap.put(key, null);
+                continue;
+            } else if (value instanceof LinkedHashMap
+                    || value.getClass().isArray()) {
                 resultMap.put(key, "[complex value]");
             } else {
                 resultMap.put(key, value);
             }
-
-
-            }
-            return resultMap;
         }
+        return resultMap;
     }
+}
 
 
 
-//    public static Map quoteString(Map<String, Object> file) {
-//        Map<String, Object> checkFile = new HashMap<>();
-//        checkFile.putAll(file);
-//        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
-//            var value = checkFile.get(object.getKey());
-//            if (value == null) {
-//                checkFile.put(object.getKey(), null);
-//            } else {
-//
-//                }
-//            }
-//
-//        }
-//        return checkFile;
-
-//    }
 
