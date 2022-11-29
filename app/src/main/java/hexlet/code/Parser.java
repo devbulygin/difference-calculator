@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,8 +41,12 @@ public class Parser {
         String readFile = Files.readString(path);
 
 
-        // Проверяем расширение
+
+
         String fileType = Files.probeContentType(path);
+        if (fileType == null) {
+            fileType = "application/x-yaml";
+        }
 
         if (fileType.equals("application/json")) {
             return jsonToMap(readFile);
@@ -52,4 +57,6 @@ public class Parser {
         }
 
     }
+
+
 }
