@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Objects;
 
 public class Parser {
 
@@ -48,9 +49,9 @@ public class Parser {
             fileType = "application/x-yaml";
         }
 
-        if (fileType.equals("application/json")) {
+        if (Objects.equals(fileType, "application/json")) {
             return jsonToMap(readFile);
-        } else if (fileType.equals("application/x-yaml")) {
+        } else if (Objects.equals(fileType,"application/x-yaml")) {
             return yamlToMap(readFile);
         } else {
             throw new Exception("File type'" + fileType + "' not supported" + "Please, select .json or .yml file");
