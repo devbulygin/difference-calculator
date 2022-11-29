@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -44,18 +45,28 @@ public class Parser {
 
 
 
-        String fileType = Files.probeContentType(path);
-//        if (fileType == null) {
-//            fileType = "application/x-yaml";
-//        }
+        String fileType = FilenameUtils.getExtension(pathToFile);
 
-        if (Objects.equals(fileType, "application/json")) {
+
+
+        if (Objects.equals(fileType, "json")) {
             return jsonToMap(readFile);
-        } else if (Objects.equals(fileType,"application/x-yaml")) {
+        } else if (Objects.equals(fileType,"yml")) {
             return yamlToMap(readFile);
         } else {
-            throw new Exception("File type'" + fileType + "' not supported" + "Please, select .json or .yml file");
+            throw new Exception("File type'" + fileType + "' not supported. " + "Please, select .json or .yml file");
         }
+
+//        String fileType = Files.probeContentType(path);
+//
+//
+//        if (Objects.equals(fileType, "application/json")) {
+//            return jsonToMap(readFile);
+//        } else if (Objects.equals(fileType,"application/x-yaml")) {
+//            return yamlToMap(readFile);
+//        } else {
+//            throw new Exception("File type'" + fileType + "' not supported. " + "Please, select .json or .yml file");
+//        }
 
     }
 
