@@ -49,7 +49,7 @@ public class Plain {
                     || value instanceof Character) {
                 resultMap.put(key, "\'" + value + "\'");
             } else if (value instanceof LinkedHashMap ||
-                    value instanceof Arrays) {
+                    value.getClass().isArray()) {
                 resultMap.put(key, "[complex value]");
             } else {
                 resultMap.put(key, value);
