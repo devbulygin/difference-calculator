@@ -12,10 +12,10 @@ import picocli.CommandLine.Parameters;
         version = "gendiff 1.0"
 )
 //
-public class App implements Runnable {
+final class App implements Runnable {
 
     @Option(names = { "-f", "--format" }, description = "output format - stylish, plain, json [default: stylish]")
-    String formatName = "stylish";
+    private String formatName = "stylish";
 
     @Parameters(index = "0", description = "path to first file")
     private static String filePath1;

@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
+    public static final int FIFTY = 50;
 
     @Test
     void readJson() throws Exception {
@@ -20,7 +21,7 @@ class ParserTest {
         String relativeXmlPath = "./src/test/resources/fixtures/file1.xml";
 
         Map expected2 = Map.of("follow", false, "host", "hexlet.io", "proxy", "123.234.53.22",
-                "timeout", 50);
+                "timeout", FIFTY);
 
         assertThat(Parser.parse(relativeJsonPath)).isEqualTo(expected2);
         assertThat(Parser.parse(relativeYamlPath)).isEqualTo(expected2);

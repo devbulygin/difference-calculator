@@ -4,44 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class JsonSerialize {
-    private List<Map<String, Object>> added = new ArrayList<>();
-    private List<Map<String, Object>> deleted = new ArrayList<>();
-    private List<List<Map<String, Object>>> changed = new ArrayList<>();
-    private List<Map<String, Object>> unchanged = new ArrayList<>();
+final class JsonSerialize {
+    private List<Map<String, Object>> add = new ArrayList<>();
+    private List<Map<String, Object>> del = new ArrayList<>();
+    private List<List<Map<String, Object>>> chang = new ArrayList<>();
+    private List<Map<String, Object>> unchang = new ArrayList<>();
 
 
     public List<Map<String, Object>> getAdded() {
-        return added;
+        return add;
     }
 
     public void setAdded(List<Map<String, Object>> added) {
-        this.added = added;
+        this.add = added;
     }
 
     public List<Map<String, Object>> getDeleted() {
-        return deleted;
+        return del;
     }
 
     public void setDeleted(List<Map<String, Object>> deleted) {
-        this.deleted = deleted;
+        this.del = deleted;
     }
 
 
     public List<Map<String, Object>> getUnchanged() {
-        return unchanged;
+
+        return unchang;
     }
 
     public void setUnchanged(List<Map<String, Object>> unchanged) {
-        this.unchanged = unchanged;
+
+        this.unchang = unchanged;
     }
 
     public List<List<Map<String, Object>>> getChanged() {
-        return changed;
+
+        return chang;
     }
 
     public void setChanged(List<List<Map<String, Object>>> changed) {
-        this.changed = changed;
+
+        this.chang = changed;
     }
 }
 
