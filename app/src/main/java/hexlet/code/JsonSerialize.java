@@ -5,47 +5,41 @@ import java.util.List;
 import java.util.Map;
 
 final class JsonSerialize {
-    private List<Map<String, Object>> add = new ArrayList<>();
-    private List<Map<String, Object>> del = new ArrayList<>();
-    private List<List<Map<String, Object>>> chang = new ArrayList<>();
-    private List<Map<String, Object>> unchang = new ArrayList<>();
-
+    private List<Map<String, Object>> added = new ArrayList<>();
+    private List<Map<String, Object>> deleted = new ArrayList<>();
+    private List<List<Map<String, Object>>> changed = new ArrayList<>();
+    private List<Map<String, Object>> unchanged = new ArrayList<>();
 
     public List<Map<String, Object>> getAdded() {
-        return add;
+        return added;
     }
 
     public void setAdded(List<Map<String, Object>> added) {
-        this.add = added;
+        this.added = added;
     }
 
     public List<Map<String, Object>> getDeleted() {
-        return del;
+        return deleted;
     }
 
     public void setDeleted(List<Map<String, Object>> deleted) {
-        this.del = deleted;
-    }
-
-
-    public List<Map<String, Object>> getUnchanged() {
-
-        return unchang;
-    }
-
-    public void setUnchanged(List<Map<String, Object>> unchanged) {
-
-        this.unchang = unchanged;
+        this.deleted = deleted;
     }
 
     public List<List<Map<String, Object>>> getChanged() {
-
-        return chang;
+        return changed;
     }
 
     public void setChanged(List<List<Map<String, Object>>> changed) {
+        this.changed = changed;
+    }
 
-        this.chang = changed;
+    public List<Map<String, Object>> getUnchanged() {
+        return unchanged;
+    }
+
+    public void setUnchanged(List<Map<String, Object>> unchanged) {
+        this.unchanged = unchanged;
     }
 }
 
