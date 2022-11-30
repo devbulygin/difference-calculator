@@ -50,13 +50,13 @@ public class Json {
                     throw new RuntimeException("operation not found");
             }
         }
-        changed.add(changedFrom);
-        changed.add(changedTo);
-
-
         result.setAdded(added);
         result.setDeleted(deleted);
         result.setUnchanged(unchanged);
+
+
+        changed.add(changedFrom);
+        changed.add(changedTo);
         result.setChanged(changed);
 
         String serialized = new ObjectMapper().writeValueAsString(result);

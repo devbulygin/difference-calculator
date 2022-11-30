@@ -27,8 +27,8 @@ class JsonTest {
         Map<String, Object> map2 = Map.of("int1", 1, "String1", "value2",
                 "obj1", "[complex value]");
 
-        String expected = "{\"added\":[{\"obj1\":\"[complex value]\"}],\"deleted\":[{\"array1\":\"[complex value]\"}],"
-                + "\"changed\":[[{\"String1\":\"value1\"}],[{\"String1\":\"value2\"}]],\"unchanged\":[{\"int1\":1}]}";
+        String expected = "{\"unchanged\":[{\"int1\":1}],\"added\":[{\"obj1\":\"[complex value]\"}],\"deleted\":[{\"array1\":\"[complex value]\"}],"
+                + "\"changed\":[[{\"String1\":\"value1\"}],[{\"String1\":\"value2\"}]]}";
 
         String actual = Json.format(proceedMap, map1, map2);
 
