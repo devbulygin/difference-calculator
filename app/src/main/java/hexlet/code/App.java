@@ -43,7 +43,7 @@ public class App implements Runnable {
 
     @Override
     public void run() {
-        String formattedDiff = null;
+        String formattedDiff = "";
         try {
             formattedDiff = Differ.generate(getFilepath1(), getFilepath2(), formatName);
         } catch (Exception e) {

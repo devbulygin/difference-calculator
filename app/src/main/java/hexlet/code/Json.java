@@ -3,17 +3,20 @@ package hexlet.code;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class Json {
     public static String format(Map<String, String> proceedMap, Map<String, Object> map1, Map<String, Object> map2)
             throws JsonProcessingException {
+
+        map1 = checkNull(map1);
+        map2 = checkNull(map2);
 
         Set<String> keys = new TreeSet<>();
 
@@ -60,5 +63,21 @@ public class Json {
 
         return serialized;
 
+    }
+
+    public static Map checkNull(Map<String, Object> file) {
+        Map<String, Object> checkFile = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>();
+        checkFile.putAll(file);
+        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
+            String key = object.getKey();
+            var value = checkFile.get(key);
+            if (value == null) {
+                resultMap.put(key, "null");
+            } else {
+                resultMap.put(key, value);
+            }
+        }
+        return resultMap;
     }
 }
