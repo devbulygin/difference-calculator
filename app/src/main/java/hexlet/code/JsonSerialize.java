@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-final class JsonSerialize {
+public final class JsonSerialize {
     private List<Map<String, Object>> added = new ArrayList<>();
     private List<Map<String, Object>> deleted = new ArrayList<>();
     private List<List<Map<String, Object>>> changed = new ArrayList<>();

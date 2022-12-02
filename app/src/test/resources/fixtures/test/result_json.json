@@ -1,0 +1,1 @@
+{"added":[{"int2":100}],"deleted":[{"String2":"value2"}],"changed":[[{"String3":"value3"}],[{"String3":"value4"}]],"unchanged":[{"Array":[1,2,3,4]},{"String1":"value1"},{"int":50},{"object":{"key1":"valueKey1","key2":"valueKey2"}}]}

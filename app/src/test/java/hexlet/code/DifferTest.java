@@ -2,60 +2,72 @@ package hexlet.code;
 
 
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 class DifferTest {
 
+    private static String resultJson;
+    private static String resultPlain;
+    private static String resultStylish;
+
+    // Построение путей до фикстур не дублируется
+    // Сами данные хранятся в текстовых файлах (фикстурах), а не в самих тестах.
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", "test", fileName)
+                .toAbsolutePath().normalize();
+    }
+
+    private static String readFixture(String fileName) throws Exception {
+        Path filePath = getFixturePath(fileName);
+        return Files.readString(filePath).trim();
+    }
+
+    // Побочные эффекты правильно делать не на уровне класса, а внутри хуков
+    @BeforeAll
+    public static void beforeAll() throws Exception {
+        resultJson = readFixture("result_json.json");
+        resultPlain = readFixture("result_plain.txt");
+        resultStylish = readFixture("result_stylish.txt");
+    }
 
     @Test
-    void generateStylish() throws Exception {
+    void differTest() throws Exception {
+        String json1 = getFixturePath("file1.json").toString();
+        String json2 = getFixturePath("file2.json").toString();
+        String yml1 = getFixturePath("file1.yml").toString();
+        String yml2 = getFixturePath("file2.yml").toString();
+
+        String actualJson = Differ.generate(json1, json2);
+        String actualJsonStylish = Differ.generate(json1, json2, "stylish");
+        String actualJsonPlain = Differ.generate(json1, json2, "plain");
+        String actualJsonJson = Differ.generate(json1, json2, "json");
+
+        String actualYml = Differ.generate(yml1, yml2);
+        String actualYmlStylish = Differ.generate(yml1, yml2, "stylish");
+        String actualYmlPlain = Differ.generate(yml1, yml2, "plain");
+        String actualYmlJson = Differ.generate(yml1, yml2, "json");
+
+        assertThat(actualJson).isEqualTo(resultStylish);
+        assertThat(actualJsonStylish).isEqualTo(resultStylish);
+        assertThat(actualJsonPlain).isEqualTo(resultPlain);
+        assertThat(actualJsonJson).isEqualTo(resultJson);
+
+        assertThat(actualYml).isEqualTo(resultStylish);
+        assertThat(actualYmlStylish).isEqualTo(resultStylish);
+        assertThat(actualYmlPlain).isEqualTo(resultPlain);
+        assertThat(actualYmlJson).isEqualTo(resultJson);
 
 
-        String filePath1 = "./src/test/resources/fixtures/file1.json";
-        String filePath2 = "./src/test/resources/fixtures/file2.json";
-        String filePath3 = "./src/test/resources/fixtures/filepath1.yml";
-        String filePath4 = "./src/test/resources/fixtures/filepath2.yml";
-        String filePath5 = "./src/test/resources/fixtures/file5.json";
-
-        String expected = "{\n"
-                + "  - follow: false\n"
-                + "    host: hexlet.io\n"
-                + "  - proxy: 123.234.53.22\n"
-                + "  - timeout: 50\n"
-                + "  + timeout: 20\n"
-                + "  + verbose: true\n"
-                + "}";
-
-        String expected2 = "Property 'follow' was removed\n"
-                + "Property 'proxy' was removed\n"
-                + "Property 'timeout' was updated. From 50 to 20\n"
-                + "Property 'verbose' was added with value: true";
-
-        String expected3 = "{\n"
-                + "  - host: hexlet.io\n"
-                + "  - timeout: 50\n"
-                + "  - proxy: 123.234.53.22\n"
-                + "  - follow: false\n"
-                + "}";
-
-
-
-        String actual1 = Differ.generate(filePath1, filePath2);
-        String actual2 = Differ.generate(filePath3, filePath4);
-        String actual3 = Differ.generate(filePath1, filePath2, "plain");
-        String actual4 = Differ.generate(filePath3, filePath4, "plain");
-        String actual5 = Differ.generate(filePath1, filePath5);
-
-
-
-        assertThat(actual1).isEqualTo(expected);
-        assertThat(actual2).isEqualTo(expected);
-        assertThat(actual3).isEqualTo(expected2);
-//        assertThat(actual5).isEqualTo(expected3);
     }
+
 
 
 }

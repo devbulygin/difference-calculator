@@ -1,0 +1,13 @@
+---
+String1: value1
+String3: value4
+int: 50
+int2: 100
+Array:
+  - 1
+  - 2
+  - 3
+  - 4
+object:
+  key1: valueKey1
+  key2: valueKey2

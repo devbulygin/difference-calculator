@@ -1,0 +1,11 @@
+{
+  "String1": "value1",
+  "String2": "value2",
+  "String3": "value3",
+  "int": 50,
+  "Array": [1, 2, 3, 4],
+  "object": {
+    "key1": "valueKey1",
+    "key2": "valueKey2"
+  }
+}
