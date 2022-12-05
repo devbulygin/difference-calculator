@@ -3,7 +3,9 @@ package hexlet.code;
 
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,35 +40,27 @@ class DifferTest {
         resultStylish = readFixture("result_stylish.txt");
     }
 
-    @Test
-    void differTest() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
+    @ParameterizedTest
+        @ValueSource(strings = {"json", "yml"})
+    public void generateTest(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
 
-        String actualJson = Differ.generate(json1, json2);
-        String actualJsonStylish = Differ.generate(json1, json2, "stylish");
-        String actualJsonPlain = Differ.generate(json1, json2, "plain");
-        String actualJsonJson = Differ.generate(json1, json2, "json");
+        assertThat(Differ.generate(filePath1, filePath2))
+                .isEqualTo(resultStylish);
 
-        String actualYml = Differ.generate(yml1, yml2);
-        String actualYmlStylish = Differ.generate(yml1, yml2, "stylish");
-        String actualYmlPlain = Differ.generate(yml1, yml2, "plain");
-        String actualYmlJson = Differ.generate(yml1, yml2, "json");
+        assertThat(Differ.generate(filePath1, filePath2, "stylish"))
+                .isEqualTo(resultStylish);
 
-        assertThat(actualJson).isEqualTo(resultStylish);
-        assertThat(actualJsonStylish).isEqualTo(resultStylish);
-        assertThat(actualJsonPlain).isEqualTo(resultPlain);
-        assertThat(actualJsonJson).isEqualTo(resultJson);
+        assertThat(Differ.generate(filePath1, filePath2, "plain"))
+                .isEqualTo(resultPlain);
 
-        assertThat(actualYml).isEqualTo(resultStylish);
-        assertThat(actualYmlStylish).isEqualTo(resultStylish);
-        assertThat(actualYmlPlain).isEqualTo(resultPlain);
-        assertThat(actualYmlJson).isEqualTo(resultJson);
+        String actualJson = Differ.generate(filePath1, filePath2, "json");
 
+        JSONAssert.assertEquals(resultJson, actualJson, false);
 
     }
+
 
 
 

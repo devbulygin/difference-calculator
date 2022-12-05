@@ -2,36 +2,34 @@ package hexlet.code.formatters;
 
 
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Set;
-import java.util.TreeSet;
+import hexlet.code.Status;
+
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 
 
 public class Plain {
-    public static String format(Map<String, String> proceedMap, Map<String, Object> map1, Map<String, Object> map2) {
+    public static String render(Map<String, Status> diff) {
         String result = new String();
-        Set<String> keys = new TreeSet<>(proceedMap.keySet());
-        map1 = modificationMap(map1);
-        map2 = modificationMap(map2);
 
-        for (String key : keys) {
 
-            switch (proceedMap.get(key)) {
+        for (Map.Entry<String, Status> element : diff.entrySet()) {
+            String key = element.getKey();
+            Status value = element.getValue();
+            switch (value.getStatusName()) {
                 case "added":
                     result += "Property " + "\'" + key + "\'" + " was added with value: "
-                            + map2.get(key) + "\n";
+                            + toPlain(value.getNewValue()) + "\n";
                     break;
                 case "deleted":
                     result += "Property " + "\'" + key + "\'" + " was removed" + "\n";
                     break;
                 case "changed":
                     result += "Property " + "\'" + key + "\'" + " was updated. From "
-                            + map1.get(key) + " to " + map2.get(key) + "\n";
+                            + toPlain(value.getOldValue()) + " to " + toPlain(value.getNewValue()) + "\n";
                     break;
                 case "unchanged":
                     break;
@@ -44,27 +42,24 @@ public class Plain {
         return (result == null || result.length() == 0) ? null : (result.substring(0, result.length() - 1));
 
     }
-
-    public static Map modificationMap(Map<String, Object> file) {
-        Map<String, Object> checkFile = new HashMap<>();
-        Map<String, Object> resultMap = new HashMap<>();
-        checkFile.putAll(file);
-        for (Map.Entry<String, Object> object : checkFile.entrySet()) {
-            String key = object.getKey();
-            var value = checkFile.get(key);
-            if (value instanceof String
-                    || value instanceof Character) {
-                resultMap.put(key, "\'" + value + "\'");
-            } else if (value == null) {
-                resultMap.put(key, null);
-            } else if (value instanceof ArrayList || value instanceof LinkedHashMap) {
-                resultMap.put(key, "[complex value]");
-            } else {
-                resultMap.put(key, value);
-            }
+    public static Object toPlain(Object value) {
+        Object result = new Object();
+        if (value instanceof String
+                || value instanceof Character) {
+            result = "\'" + value + "\'";
+        } else if (value == null) {
+            result = null;
+        } else if (value instanceof ArrayList || value instanceof LinkedHashMap) {
+            result = "[complex value]";
+        } else {
+            result = value;
         }
-        return resultMap;
+        return result;
     }
+
+
+
+
 }
 
 

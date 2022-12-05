@@ -1,30 +1,33 @@
-package hexlet.code;
+package hexlet.code.formatters;
+
+import hexlet.code.Status;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Stylish {
-    public static String format(Map<String, String> proceedMap, Map<String, Object> map1, Map<String, Object> map2) {
-        map1 = checkNull(map1);
-        map2 = checkNull(map2);
+    public static String render(Map<String, Status> diff) {
+
 
         String result = "{\n";
 
-        for (Map.Entry<String, String> element : proceedMap.entrySet()) {
+        for (Map.Entry<String, Status> element : diff.entrySet()) {
             String key = element.getKey();
-            switch (element.getValue()) {
+            Status value = element.getValue();
+            switch (value.getStatusName()) {
                 case "added":
-                    result += "  " + "+ " + key + ": " + map2.get(key) + "\n";
+                    result += "  " + "+ " + key + ": " + value.getNewValue() + "\n";
                     break;
                 case "deleted":
-                    result += "  " + "- " + key + ": " + map1.get(key) + "\n";
+                    result += "  " + "- " + key + ": " + value.getOldValue() + "\n";
                     break;
                 case "changed":
-                    result += "  " + "- " + key + ": " + map1.get(key) + "\n";
-                    result += "  " + "+ " + key + ": " + map2.get(key) + "\n";
+                    result += "  " + "- " + key + ": " + value.getOldValue() + "\n";
+                    result += "  " + "+ " + key + ": " + value.getNewValue() + "\n";
                     break;
                 case "unchanged":
-                    result += "  " + "  " + key + ": " + map1.get(key) + "\n";
+                    result += "  " + "  " + key + ": " + value.getNewValue() + "\n";
                     break;
                 default:
                     throw new RuntimeException("operation not found");

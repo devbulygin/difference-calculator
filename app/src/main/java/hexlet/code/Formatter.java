@@ -2,26 +2,23 @@ package hexlet.code;
 
 import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
+import hexlet.code.formatters.Stylish;
 
 import java.util.Map;
 
 public class Formatter {
-    public static String format(DifferContent result) throws Exception {
-        String formatName = result.getFormatName();
-        Map<String, String> diffMap = result.getDifferMap();
-        Map<String, Object> map1 = result.getMap1();
-        Map<String, Object> map2 = result.getMap2();
+    public static String format(Map<String, Status> diff, String formatName) throws Exception {
+
+
 
         switch (formatName) {
             case "stylish":
-
-                return Stylish.format(diffMap, map1, map2);
+                return Stylish.render(diff);
             case "plain":
-
-                return Plain.format(diffMap, map1, map2);
+                return Plain.render(diff);
             case "json":
 
-                return Json.format(diffMap, map1, map2);
+                return Json.render(diff);
 
             default:
                 throw new Exception("Unknown format: '" + formatName + "'");
