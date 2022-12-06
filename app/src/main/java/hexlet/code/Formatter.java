@@ -10,7 +10,6 @@ public class Formatter {
     public static String format(Map<String, Status> diff, String formatName) throws Exception {
 
 
-
         switch (formatName) {
             case "stylish":
                 return Stylish.render(diff);

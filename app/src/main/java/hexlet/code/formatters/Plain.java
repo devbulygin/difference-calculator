@@ -1,13 +1,10 @@
 package hexlet.code.formatters;
 
 
-
 import hexlet.code.Status;
 
 import java.util.List;
 import java.util.Map;
-
-
 
 
 public class Plain {
@@ -42,6 +39,7 @@ public class Plain {
         return (result == null || result.length() == 0) ? null : (result.substring(0, result.length() - 1));
 
     }
+
     public static String stringify(Object value) {
 
         if (value == null) {
@@ -58,8 +56,6 @@ public class Plain {
 
         return value.toString();
     }
-
-
 
 
 }

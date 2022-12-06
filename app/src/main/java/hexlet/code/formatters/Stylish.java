@@ -1,6 +1,7 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Status;
+
 import java.util.Map;
 
 
@@ -32,6 +33,7 @@ public class Stylish {
         }
         result += "}";
         return result;
+
 
     }
 
