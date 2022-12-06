@@ -1,32 +1,49 @@
 package hexlet.code;
 
+import org.apache.commons.io.FilenameUtils;
 
-import hexlet.code.formatters.Parser;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
-//        читаем входные файлы и расширение (json, yml)
-//        на основе формата данных(получили из расширения фалйла) парсим данные в мапу, получается 2 мапы
+        String content1 = readContent(filePath1);
+        String content2 = readContent(filePath2);
+        String dataFormat1 = getDataFormat(filePath1);
+        String dataFormat2 = getDataFormat(filePath2);
 
-
-        Map<String, String> filetypeAndFile1 = Parser.readFileAndFormat(filePath1);
-        Map<String, String> filetypeAndFile2 = Parser.readFileAndFormat(filePath2);
-        Map<String, Object> map1 = Parser.parse(filetypeAndFile1);
-        Map<String, Object> map2 = Parser.parse(filetypeAndFile2);
+        Map<String, Object> map1 = Parser.parse(content1, dataFormat1);
+        Map<String, Object> map2 = Parser.parse(content2, dataFormat2);
 
 
         Map<String, Status> diff = Label.differTwoMap(map1, map2);
 
 
         return Formatter.format(diff, formatName);
+    }
 
+    public static String readContent(String pathToFile) throws Exception {
+        Path path = Paths.get(pathToFile).toAbsolutePath().normalize();
 
+        if (!Files.exists(path)) {
+            throw new Exception("File '" + pathToFile + "' does not exist");
+        }
+        String content = Files.readString(path);
+        if (content.isEmpty()) {
+            content = "{}";
+        }
 
+        return content;
+    }
+
+    public static String getDataFormat(String pathToFile) {
+        return FilenameUtils.getExtension(pathToFile);
 
     }
+
 
     public static String generate(String filePath1, String filePath2) throws Exception {
         return generate(filePath1, filePath2, "stylish");

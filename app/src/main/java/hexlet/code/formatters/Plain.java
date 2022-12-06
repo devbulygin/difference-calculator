@@ -4,8 +4,7 @@ package hexlet.code.formatters;
 
 import hexlet.code.Status;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -19,22 +18,23 @@ public class Plain {
         for (Map.Entry<String, Status> element : diff.entrySet()) {
             String key = element.getKey();
             Status value = element.getValue();
-            switch (value.getStatusName()) {
+            String type = value.getStatusName();
+            switch (type) {
                 case "added":
                     result += "Property " + "\'" + key + "\'" + " was added with value: "
-                            + toPlain(value.getNewValue()) + "\n";
+                            + stringify(value.getNewValue()) + "\n";
                     break;
                 case "deleted":
                     result += "Property " + "\'" + key + "\'" + " was removed" + "\n";
                     break;
                 case "changed":
                     result += "Property " + "\'" + key + "\'" + " was updated. From "
-                            + toPlain(value.getOldValue()) + " to " + toPlain(value.getNewValue()) + "\n";
+                            + stringify(value.getOldValue()) + " to " + stringify(value.getNewValue()) + "\n";
                     break;
                 case "unchanged":
                     break;
                 default:
-                    throw new RuntimeException("operation not found");
+                    throw new RuntimeException("Unknown node type: '" + type + "'");
             }
 
         }
@@ -42,19 +42,21 @@ public class Plain {
         return (result == null || result.length() == 0) ? null : (result.substring(0, result.length() - 1));
 
     }
-    public static Object toPlain(Object value) {
-        Object result = new Object();
-        if (value instanceof String
-                || value instanceof Character) {
-            result = "\'" + value + "\'";
-        } else if (value == null) {
-            result = null;
-        } else if (value instanceof ArrayList || value instanceof LinkedHashMap) {
-            result = "[complex value]";
-        } else {
-            result = value;
+    public static String stringify(Object value) {
+
+        if (value == null) {
+            return "null";
         }
-        return result;
+
+        if (value instanceof String) {
+            return "'" + value + "'";
+        }
+
+        if (value instanceof List || value instanceof Map) {
+            return "[complex value]";
+        }
+
+        return value.toString();
     }
 
 
