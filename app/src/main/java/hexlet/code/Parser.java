@@ -27,14 +27,14 @@ public class Parser {
     public static Map parseJson(String json) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map
-                = objectMapper.readValue(json, new TypeReference<Map<String, Object>>() {});
+                = objectMapper.readValue(json, new TypeReference<Map<String, Object>>() { });
         return map;
     }
 
     public static Map parseYaml(String yaml) throws Exception {
         ObjectMapper objectMapper = new YAMLMapper();
         Map<String, Object> map
-                = objectMapper.readValue(yaml, new TypeReference<Map<String, Object>>() {});
+                = objectMapper.readValue(yaml, new TypeReference<Map<String, Object>>() { });
         return map;
     }
 
