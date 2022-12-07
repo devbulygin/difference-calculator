@@ -17,18 +17,18 @@ public class Plain {
             Status value = element.getValue();
             String type = value.getStatusName();
             switch (type) {
-                case "added":
+                case Status.ADDED:
                     result += "Property " + "\'" + key + "\'" + " was added with value: "
                             + stringify(value.getNewValue()) + "\n";
                     break;
-                case "deleted":
+                case Status.DELETED:
                     result += "Property " + "\'" + key + "\'" + " was removed" + "\n";
                     break;
-                case "changed":
+                case Status.CHANGED:
                     result += "Property " + "\'" + key + "\'" + " was updated. From "
                             + stringify(value.getOldValue()) + " to " + stringify(value.getNewValue()) + "\n";
                     break;
-                case "unchanged":
+                case Status.UNCHANGED:
                     break;
                 default:
                     throw new RuntimeException("Unknown node type: '" + type + "'");

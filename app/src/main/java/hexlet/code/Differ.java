@@ -12,8 +12,8 @@ public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
         String content1 = readContent(filePath1);
         String content2 = readContent(filePath2);
-        String dataFormat1 = getDataFormat(filePath1);
-        String dataFormat2 = getDataFormat(filePath2);
+        String dataFormat1 = FilenameUtils.getExtension(filePath1);
+        String dataFormat2 = FilenameUtils.getExtension(filePath2);
 
         Map<String, Object> map1 = Parser.parse(content1, dataFormat1);
         Map<String, Object> map2 = Parser.parse(content2, dataFormat2);
@@ -38,12 +38,6 @@ public class Differ {
 
         return content;
     }
-
-    public static String getDataFormat(String pathToFile) {
-        return FilenameUtils.getExtension(pathToFile);
-
-    }
-
 
     public static String generate(String filePath1, String filePath2) throws Exception {
         return generate(filePath1, filePath2, "stylish");

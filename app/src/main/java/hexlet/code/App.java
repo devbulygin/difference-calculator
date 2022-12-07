@@ -21,7 +21,6 @@ final class App implements Runnable {
     @Parameters(index = "0", description = "path to first file")
     private static String filePath1;
 
-
     @Parameters(index = "1", description = "path to second file")
     private static String filePath2;
 
@@ -46,15 +45,11 @@ final class App implements Runnable {
     public void run() {
         String formattedDiff = "";
         try {
-            formattedDiff = Differ.generate(getFilepath1(), getFilepath2(), formatName);
+            formattedDiff = Differ.generate(filePath1, filePath2, formatName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         System.out.println(formattedDiff);
-
-
-
-
 
     }
 }

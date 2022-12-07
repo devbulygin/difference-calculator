@@ -14,17 +14,17 @@ public class Stylish {
             Status value = element.getValue();
             String type = value.getStatusName();
             switch (type) {
-                case "added":
+                case Status.ADDED:
                     result += "  " + "+ " + key + ": " + value.getNewValue() + "\n";
                     break;
-                case "deleted":
+                case Status.DELETED:
                     result += "  " + "- " + key + ": " + value.getOldValue() + "\n";
                     break;
-                case "changed":
+                case Status.CHANGED:
                     result += "  " + "- " + key + ": " + value.getOldValue() + "\n";
                     result += "  " + "+ " + key + ": " + value.getNewValue() + "\n";
                     break;
-                case "unchanged":
+                case Status.UNCHANGED:
                     result += "  " + "  " + key + ": " + value.getNewValue() + "\n";
                     break;
                 default:
